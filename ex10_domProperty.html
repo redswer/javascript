@@ -11,8 +11,23 @@
 <!-- 2. colorChange() 함수를 완성하여 클릭하면 p 태그의 글꼴색깔을 변경 -->
 
 <script>
+    /* 빈 funtion 없이 스크립트로 스타일을 적용하는 경우, 스크립트 태그를 적용되는 태그(p) 밑에 설정해야 정상 적용됨
+       따라서 스크립트로 스타일을 적용하는 경우 window.onload = function () 함수 안에 스타일을 설정해야 최상단에
+        설정 가능함. */
+    window.onload = function () {
 
+        /* 자식 객체에 스타일이 적용되어 있는 경우, 부모 객체(p)에 스타일을 적용하더라도 자식 개체(span)의 스타일은 변하지 않음. */
+        document.getElementById('firstP').style.color = 'blue';
+        document.getElementById('firstP').style.background = 'yellow';
+    }
 
+    function colorChange() {
+        if (document.getElementById('firstP').style.color == 'red') {
+            document.getElementById('firstP').style.color = 'blue'
+        } else {
+            document.getElementById('firstP').style.color = 'red'
+        }
+    }
 </script>
 
 <body>
