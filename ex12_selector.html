@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>** Selector **</title>
+    <script>
+        // 1. id
+        onload = function () {
+            document.getElementById('header').style.color = 'green';
+
+            // 2. tag
+            // let t = document.querySelector('h2');
+            let t = document.querySelector('h2:nth-child(3)');      // css 의 선택자 사용 가능
+            t.style.color = 'red';
+            t.style.background = 'black'
+
+            // 3. tag all
+            let a = document.querySelectorAll('h4');
+            /* a.style.color = 'blue'; */
+            // a 는 배열이기 때문에 적용되지 않음 = 반복문으로 적용해야 함
+
+            for (let i = 0; i < a.length; i++) {
+                a[i].style.color = 'blue';
+                a[i].style.background = 'yellow';
+            }
+
+            // 4. body의 짝수번째 child 에 대해서 color 를 pink로 변경
+            let n = document.querySelectorAll('body>:nth-child(2n)');
+            for (let i = 0; i < n.length; i++) {
+                n[i].style.color = 'green';
+                n[i].style.background = 'pink';
+
+                // 컨텐츠 변경하기 : 기울임꼴, colorChange , i=0
+                n[i].innerHTML = `<em>colorChange i=${i}</em>`
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <pre><h3>
+        ** Selector: id, tag, tag all **
+
+        1. id
+        => document.getElementById('id')
+        <span id="header">getElementById</span>
+
+        2. tag
+        => document.querySelector
+        => 첫 번째 tag 1개만 인식
+
+        3. tag all
+        => document.querySelectorAll
+        => 모두 선택해서 배열로 리턴
+    </h3></pre>
+
+    <h2>tag 선택자1 : child2</h2>
+    <h2>tag 선택자2 : child3</h2>
+    <h2>tag 선택자3 : child4</h2>
+
+    <h4>tagAll 선택자1 : child5</h4>
+    <h4>tagAll 선택자2 : child6</h4>
+    <h4>tagAll 선택자3 : child7, LastChild</h4>
+</body>
+
+</html>
