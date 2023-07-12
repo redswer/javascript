@@ -14,11 +14,23 @@
         // 3. 고전적(Traditional) 방식과 this
         onload = function () {
             let t = document.getElementById('trad');
+
             t.onclick = function () {
                 alert('test3. 고전적(Traditional) 방식');
 
                 // this: 이벤트 핸들러에서는 이벤트가 발생된 객체를 의미
                 this.style.background = 'yellow';
+            }
+
+            // 4. 기본 이벤트 제거 (remove)
+            let a = document.getElementById('remove');
+
+            a.onclick = function () {
+                // alert 창이 뜨고 확인을 누르면 원래의 이벤트인 네이버 페이지로 이동 실행됨
+                alert('4. 기본 이벤트 제거 (remove)');
+
+                // true; = 실행 / false; = 무효화   => 이벤트 핸들러가 false 를 return 하면 이벤트가 무효화됨
+                return false;
             }
         }
     </script>
@@ -44,6 +56,8 @@
     <button onclick="scriptTest()">EventModel2_inLineScript</button>
     3) 고전적(Traditional) 방식과 this
     <button id="trad">EventModel3_Traditional</button>
+    4) 기본 이벤트 제거 (remove)
+    <a href="http://www.naver.com" id="remove">Event Remove Test</a>
       </h3></pre>
 </body>
 
