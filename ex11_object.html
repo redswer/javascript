@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>** My Object 만들기 **</title>
+    <script>
+        // ** MyObject 만들기
+        // => 아래 화면에서 입력된 값을 받아 객체를 완성하고  하단의 div에 그 내용을 출력하세요~
+
+        function send() {
+            let student = {
+                name: document.getElementById('name').value,
+                age: document.getElementById('age').value,
+                jo: document.getElementById('jo').value,
+                career: document.getElementById('career').value,
+                info1: document.getElementById('info1').value,
+                info2: document.getElementById('info2').value,
+                infoPrint: function () {
+                    return `저는 ${this.name}이고 ${this.age}세 입니다. 현재 ${this.jo}조에 속해 있습니다.
+                    과거에는 ${this.career}을 했습니다. 희망사항은 ${this.info1}입니다. 건의사항은 ${this.info2} 입니다.`;
+                }
+            }
+            document.getElementById('content').innerHTML = student.infoPrint();
+        }
+    </script>
+</head>
+
+<body>
+    <h2>** Student 객체 만들기 **</h2>
+    <table width="80%">
+        <tr height="40">
+            <th bgcolor="aqua">Name
+            <td><input type="text" id="name"></td>
+            </th>
+        </tr>
+        <tr height="40">
+            <th bgcolor="aqua">age
+            <td><input type="text" id="age"></td>
+            </th>
+        </tr>
+        <tr height="40">
+            <th bgcolor="aqua">조
+            <td><input type="text" id="jo"></td>
+            </th>
+        </tr>
+        <tr height="40">
+            <th bgcolor="aqua">경력
+            <td><input type="text" id="career"></td>
+            </th>
+        </tr>
+        <tr height="40">
+            <th bgcolor="aqua">희망사항
+            <td><input type="text" id="info1"></td>
+            </th>
+        </tr>
+        <tr height="40">
+            <th bgcolor="aqua">건의사항
+            <td><input type="text" id="info2"></td>
+            </th>
+        </tr>
+        <tr height="40">
+            <td colspan="2" align="center"><button onclick="send()">전송</button></td>
+        </tr>
+    </table>
+    <hr>
+
+    <h3>** Info **</h3>
+    <div id="content"></div>
+</body>
+
+</html>
