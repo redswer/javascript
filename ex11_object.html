@@ -11,18 +11,21 @@
 
         function send() {
             let student = {
-                name: document.getElementById('name').value,
-                age: document.getElementById('age').value,
-                jo: document.getElementById('jo').value,
-                career: document.getElementById('career').value,
-                info1: document.getElementById('info1').value,
-                info2: document.getElementById('info2').value,
-                infoPrint: function () {
-                    return `저는 ${this.name}이고 ${this.age}세 입니다. 현재 ${this.jo}조에 속해 있습니다.
-                    과거에는 ${this.career}을 했습니다. 희망사항은 ${this.info1}입니다. 건의사항은 ${this.info2} 입니다.`;
-                }
+                이름: document.getElementById('name').value,
+                나이: document.getElementById('age').value,
+                조: document.getElementById('jo').value,
+                경력: document.getElementById('career').value,
+                희망사항: document.getElementById('info1').value,
+                건의사항: document.getElementById('info2').value,
+                // infoPrint: function () {
+                //     return `저는 ${this.name}이고 ${this.age}세 입니다. 현재 ${this.jo}조에 속해 있습니다.
+                //     과거에는 ${this.career}을 했습니다. 희망사항은 ${this.info1}입니다. 건의사항은 ${this.info2} 입니다.`;
+                // }
             }
-            document.getElementById('content').innerHTML = student.infoPrint();
+            // document.getElementById('content').innerHTML = student.infoPrint();
+            for (let i in student) {
+                document.getElementById('content').innerHTML += `${i} : ${student[i]}<br>`;
+            }
         }
     </script>
 </head>
