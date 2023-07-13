@@ -25,9 +25,14 @@
             // 4. 기본 이벤트 제거 (remove)
             let a = document.getElementById('remove');
 
-            a.onclick = function () {
+            a.onclick = function (e) {
                 // alert 창이 뜨고 확인을 누르면 원래의 이벤트인 네이버 페이지로 이동 실행됨
-                alert('4. 기본 이벤트 제거 (remove)');
+                alert('4. 기본 이벤트 제거 (remove), e.type = ' + e.type + ', e.target = ' + e.target + ', ' + e.defaultPrevented);
+                /* type = 발생한 이벤트 종류
+                   target = 이벤트를 발생시킨 객체(dom 혹은 html 태그)
+                   defaultPrevented = 이벤트의 디폴트 행동이 취소되었는지를 true/false 값으로 나타냄
+                   preventDefault() = 이벤트의 디폴트 행동을 취소시키는 메서드
+                 */
 
                 // true; = 실행 / false; = 무효화   => 이벤트 핸들러가 false 를 return 하면 이벤트가 무효화됨
                 return false;
