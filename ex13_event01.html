@@ -50,7 +50,9 @@
 
                 return false;
                 // true; = 실행 / false; = 무효화   => 이벤트 핸들러가 false 를 return 하면 이벤트가 무효화됨
-                // = e.preventDefault();
+                // = e.preventDefault() + e.stopPropagation()
+
+                
             }// a.onclick
         }// onload
     </script>
