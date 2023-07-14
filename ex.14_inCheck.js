@@ -112,19 +112,25 @@ function ageCheck() {
         return true;
     }
 
-    /*  =   if (age == '') {
-            document.getElementById('aMessage').innerHTML = '나이를 입력해야 합니다.';
-            return false;
-    
-        } else if (age.replace(/[^0-9]/g, '').length < age.length) {
-                            // ^ = not
-            document.getElementById('aMessage').innerHTML = '숫자만 입력해야 합니다.';
-            return false;
-    
-        } else {
-            document.getElementById('aMessage').innerHTML = '';
-            return true;
-        } */
+    //     /*  Number.inInteger(n): 정수확인가능 (n 이 정수일때만 true)
+    //         단, n 이 숫자타입이어야함
+    //         아래처럼 value 는 문자로 인식하기때문에 숫자화_parseInt 가 필요함. 
+    //         단, parseInt(age) 사용시 주의
+    //         - 실수 입력시 정수로 바뀌어 처리됨
+    //         - 문자가 포함된 숫자도 앞쪽의 숫자값만 가져와 정수 return */
+    //     if (age == '') {
+    //         document.getElementById('aMessage').innerHTML = '나이를 입력해야 합니다.';
+    //         return false;
+
+    //     } else if (age.replace(/[^0-9]/g, '').length < age.length) {
+    //         // ^ = not
+    //         document.getElementById('aMessage').innerHTML = '숫자만 입력해야 합니다.';
+    //         return false;
+
+    //     } else {
+    //         document.getElementById('aMessage').innerHTML = '';
+    //         return true;
+    //     }
 }
 
 // 6) BirthDay : 입력 여부 확인  ( length == 10 )
