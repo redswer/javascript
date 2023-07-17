@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>** function : Default Parameter **</title>
+    <script>
+        function test(name, activity) {
+            console.log(`${name}씨는 ${activity}를 좋아합니다.`);
+        }
+        test('홍길동', '태권도');
+        test();
+
+        // default parameter
+        function defalutTest(name = '김길동', activity = '수영') {
+            console.log(`${name}씨는 ${activity}를 좋아합니다.`)
+        }
+
+        defalutTest('홍길동', '태권도');
+        defalutTest();
+    </script>
+</head>
+
+<body>
+    <h2>1. Default Parameters</h2>
+    <pre>
+    => 함수 정의시에 Default Parameter 를 정의하면, 매개변수(parameter) 없이 호출 시 Default Parameter의 값이 적용됨.
+
+    => console 에서 확인
+</pre>
+
+    <h2>2. 화살표 함수 (Arrow Function)</h2>
+    <h2>** 2. 화살표 함수(Arrow Function)</h2>
+    <pre>
+  => 제한사항   
+   - this나 super에 대한 바인딩이 없고, methods(객체의 속성) 로 사용될 수 없음.
+   - new.target 키워드가 없음.
+   ( new.target 속성(property)은 함수 또는 생성자가 new 연산자를 사용하여 호출됐는지를 감지할 수 있음)
+   - 일반적으로 스코프를 지정할 때 사용하는 call, apply, bind methods를 이용할 수 없음.
+   - 생성자(Constructor) 함수로 사용할 수 없음.
+
+  => 예시
+   // 매개변수가 없는 경우 (괄호 생략 불가능)
+   let foo = () => console.log('bar');
+   // let foo = function() { console.log('bar'); }
+   foo(); // bar
+   
+   // 매개변수가 하나인 경우 (괄호 생략 가능)
+   let foo = x => x;
+   foo('bar'); // bar
+   
+   // 매개변수가 여러개인 경우 (괄호 생략 불가능)
+   // body 의 실행문이 한 문장이면 중괄호 { } 생략 가능
+   let foo = (a, b) => a + b; // 간단하게 한줄로 표현했을 경우, 중괄호 { }를 생략하면 return 생략해도 값이 반환됨
+   foo(1, 2); // 3
+   
+   let foo = (a, b) => { return a + b }; 
+   foo(1, 2); // 3
+   
+   // "{}"를 사용했는데 return이 없으면 undefined
+   let foo = (a, b) => { a + b };
+   foo(1, 2); // undefined
+   
+   // 여러줄 썼을 때
+   let foo = (a, b) => {
+      let c = 3;
+      return a + b + c;
+   }
+   foo(1, 2, 3) // 6
+   /*
+   간단하게 한줄로 표현할 땐 "{}", return 없이 값이 반환됩니다.
+   "{}"를 사용하면 값을 반환할 때 return을 사용해야합니다.
+   "{}"를 사용하고 return이 없으면 undefied를 반환합니다.
+   "{}"을 사용할 때는 여러줄을 썼을 때 사용합니다.
+   */
+   
+   // 객체를 반환할 때
+   let foo = () => ( { a: 1, b: 2, c: 3 } );
+   foo(); // { a: 1, b: 2, c: 3 };
+   콜백 함수에서도 사용할 수 있습니다.
+</pre>
+</body>
+
+</html>
