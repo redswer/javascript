@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Close Test</title>
+    <script>
+        let newWindow = null;
+        // 변수 선언 이유
+
+        function load(url) {
+            newWindow = window.open(url, 'mywin', 'left=150, top=30, width=500, height=500')
+        };
+
+        
+        // newWindow의 open유무를 먼저 알아야, 열렸을때 닫아야하니깐!
+        // newWindow 상태가 null인상태에서 close를 하게되면 에러가난다.
+        function unload() {
+            if( newWindow == null || newWindow.closed == true) {
+                return;
+                // return을 단독으로 사용하면, 현재 위치에서 함수 종료된다. (break 같은 느낌같다.)
+            }else {
+                newWindow.close();
+            }
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+    <h3>** Window Close Test **</h3>
+    => 윈도우를 스스로 닫는 경우와 자신이 생성한 윈도우를 닫는 사례
+    <br>
+    <hr>
+    <a href="javascript:load('w03_closeChild.html')">newWindow_Open</a><br>
+    <a href="javascript:unload('')">newWindow_Close</a><br> 
+    <a href="javascript:window.close()">thisWindow_Close</a>
+    <!-- 
+        window.onload처럼 window는 생략가능한데,
+        thiswindow close가 현재 윈도우를 종료한다는 뜻이니까.. 맞춰보면!!
+        thiswindow는 window가된다..?
+     -->
+
+
+</body>
+
+</html>

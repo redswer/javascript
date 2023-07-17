@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window open</title>
+    <script>
+        // => window.open('url','name','속성')
+        // => name: _blank, _parent, _self, _top, name지정(_blank 처럼 새창을 open)
+
+        // windowname이 중복적으로 사용될 수 있고,
+        // 1개의 windowname에 여러개가 지정되어 있을 경우
+        // 해당 이름을 가진 윈도우 창에서 여러개가 띄워질 수 있음.
+        // 여러개가 띄워진다는 의미는 한번에 띄워지는게아니라
+        // 1번을 띄웠다가 2번을 클릭하면 2번으로 바뀌고 그런식이다.
+
+        onload = function () {
+            document.getElementById('win1').onclick = () => {
+                window.open('./snowVillage.html', 'myWindow', 'toolbar=0');
+                // 형식 : .open('url', 'windowname', '속성')
+                // windowname = _blank / _parent / _self / _top
+
+                // myWindow라는 이름을 가진 인터넷창에 url을 띄운다고 이해하면될듯?
+                // toolbar = yes, 1, a 등등 뭘써도 적용이되는데 그 이유는..??
+            }
+
+            // 1.2) 현재 Window 에 출력하기 , 속성 지정하지 않기
+            document.getElementById('win2').onclick = () => {
+                window.open('./snowVillage.html', '_self',);
+            }
+
+            // 1.3) 이름 없는 새 윈도우에 출력하기 , 속성 '' -> 속성없음(1.2)과 동일
+            document.getElementById('win3').onclick = () => {
+                window.open('./snowVillage.html', '_blank', '');
+                // 이름이 없다보니, 매번 새 창에 url이 열린다. 즉, 무한증식
+            }
+
+            // 1.4) 이름과 속성이 없는 윈도우 출력하기 -> 1.3 과 동일
+            document.getElementById('win4').onclick = () => {
+                window.open('./snowVillage.html', '', '');
+            }
+
+            // 1.5) 빈 윈도우 생성하기
+            document.getElementById('win5').onclick = () => {
+                window.open('', '', '');
+            }
+
+            // 1.6) 이름, 위치, 크기를 지정한 새 윈도우 출력하기
+            document.getElementById('win6').onclick = () => {
+                window.open('./snowVillage.html', '_blank', 'width=300px, height=200px, top=300px, left=200');
+            }
+
+
+            // 2) 윈도우 이름과 윈도우 Open Test
+            //  => https://www.w3schools.com/ , https://www.naver.com
+            document.getElementById('test').onclick = () => {
+                window.open('https://www.w3schools.com/', 'myWindow', '');
+            }
+
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <h3>
+        <pre>
+      ** Window Open Test **
+
+      1) 다양한 윈도우 열기 사례
+      <span id="win1">1.1) newWindow : snowVillage,myWinow,툴바만 표시</span> 
+      <span id="win2">1.2) 현재 Window 에 출력하기</span>
+      <span id="win3">1.3) 이름 없는 새 윈도우에 출력하기</span>
+      <span id="win4">1.4) 이름과 속성이 없는 윈도우 출력하기</span>
+      <span id="win5">1.5) 빈 윈도우 생성</span>
+      <span id="win6">1.6) 이름, 위치, 크기를 지정한 새 윈도우 출력하기</span>
+
+      
+      2) 윈도우 이름과 윈도우 Open Test
+     => 이름 없는 윈도우 계속 열기 (1.3)
+      -> 계속 새 윈도우 Open
+
+    => 빈 윈도우 계속 열기 (1.5)
+      -> 계속 새 윈도우에 Open   
+
+    => 이름 있는 윈도우 계속 열기 
+      -> (1.1) 계속 클릭해보면 동일창 에 Open
+      -> <span id="test">NewUrl 적용 Test</span> : 동일창 에 Open
+
+    </pre>
+    </h3>
+</body>
+
+</html>
