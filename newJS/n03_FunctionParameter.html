@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>** function : Default Parameter **</title>
     <script>
+        // test 1 : default parameter
         function test(name, activity) {
             console.log(`${name}씨는 ${activity}를 좋아합니다.`);
         }
@@ -19,6 +20,45 @@
 
         defalutTest('홍길동', '태권도');
         defalutTest();
+
+
+        // test 2 : 화살표 함수와 this
+        let gang = {
+            resorts: ["강릉", "속초", "동해", "설악산"],
+            print: function (delay = 1000) {
+                // this 는 현재 객체 인식
+                // join 은 수평 배치
+                console.log('print test 1 : ' + this.resorts.join(","));
+
+                // 일반함수는 this 의 값을 새로 바인딩(할당)하기 때문에 window 객체를 의미함
+                // 따라서 오류 발생
+                setTimeout(function () {
+                    console.log('print test 2 : ' + this.resorts.join(","))
+                }, delay);
+
+                // 함수의 bind 메서드를 사용해 오류 해결
+                setTimeout(function () {
+                    console.log('print test 2 : ' + this.resorts.join(","))
+                }.bind(this), delay);
+            }
+        }
+
+        gang.print();
+
+        // 화살표 함수 : callBack 함수는 화살표 함수로 가능
+        let jeju = {
+            resorts: ["제주", "서귀포", "유채꽃밭", "한라산"],
+            print: function (delay = 1000) {
+                console.log('print test 1 : ' + this.resorts.join(","));
+
+                /* setTimeout 이 걸려 있기 때문에 setTimeout이 걸리지 않은 console 부터 순서대로 출력
+                따라서 setTimeout이 걸리지 않은 gang의 test 1, jeju의 test 1이 우선 순서대로 출력되고
+                이후에 setTimeout이 걸린 gang의 test 2, jeju의 test 2 가 순서대로 출력 */
+                setTimeout(() => console.log('print test 2 : ' + this.resorts.join(",")), delay)
+            }
+        }
+
+        jeju.print();
     </script>
 </head>
 
