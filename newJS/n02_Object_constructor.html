@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>** Constructor 와 인스턴스 **</title>
+    <script>
+        // 1. 프로토타입(생성자 함수) 생성\
+        function student(name, age) {
+            this.name = name,
+                this.age = age,
+                this.infoPrint = function () {
+                    return `저는 ${name}이고 ${age}세 입니다.`;
+                }
+        }
+
+
+        // 2. student 객체 인스턴스 생성
+        const student1 = new student('김해림', 29);
+        const student2 = new student('안진혁', 27);
+        const student3 = new student('이성룡', 28);
+        const student4 = new student('양세현', 33);
+
+        console.log(student1.infoPrint());
+        console.log(student2.infoPrint());
+        console.log(student3.infoPrint());
+        console.log(student4.infoPrint());
+
+
+        // 3. 인스턴스를 배열에 담고 출력
+
+        // 3-1) 배열 정의
+        let studentInfo = new Array(4);
+
+        // 3-2) 배열 초기화
+        studentInfo[0] = student1;
+        studentInfo[1] = student2;
+        studentInfo[2] = student3;
+        studentInfo[3] = student4;
+
+        // 3-3) 출력(반복문)
+        for (let i = 0; i < studentInfo.length; i++) {
+            console.log(`student${i + 1} : ${studentInfo[i].infoPrint()}`);
+        }
+
+        // 간편한 for 문(for of / for in) 활용 (readOnly)
+        /* for of (undefined 출력) */
+        for (let i of studentInfo) {
+            console.log(i.infoPrint());
+        }
+
+        /* for in (undefined 생략) */
+        for (let i in studentInfo) {
+            console.log(`student${+i + 1} : ${studentInfo[i].infoPrint()}`);
+        }
+
+        // ** age 의 평균
+        let ageSum = 0;
+
+        for (let i = 0; i < studentInfo.length; i++) {
+            ageSum += studentInfo[i].age;
+        }
+
+        console.log(`평균나이 : ${ageSum / studentInfo.length}`);
+    </script>
+</head>
+
+<body>
+    <h2>Constructor 와 인스턴스</h2>
+    <pre>
+=> ex11_~ 에서 생성한것과 같은 student 객체의 name, age, infoPrint를 포함한 프로토타입(생성자 함수)으로 생성하고,
+   조원들의 인스턴스를 생성해서 console로 출력
+</pre>
+</body>
+
+</html>
