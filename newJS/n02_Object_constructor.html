@@ -6,13 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>** Constructor 와 인스턴스 **</title>
     <script>
-        // 1. 프로토타입(생성자 함수) 생성\
+        // 1. 프로토타입(생성자 함수) 생성
+        /* 프로토타입
+           function 으로 정의하고, 이름은 대문자로 시작함
+           이러한 함수를 생성자 함수라고 함
+           this를 이용해서 속성과 매서드를 정의
+           생성자 함수 내부의 this 는 생성자 함수가 생성할 인스턴스를 의미함 */
         function student(name, age) {
             this.name = name,
                 this.age = age,
                 this.infoPrint = function () {
-                    return `저는 ${name}이고 ${age}세 입니다.`;
+                    return `저는 ${this.name}이고 ${this, age}세 입니다.`;
                 }
+
+            this.agePrint = function () {
+                return this.age * this.age;
+            }
+            // = this.agePrint = () => { return this.age * this.age}
         }
 
 

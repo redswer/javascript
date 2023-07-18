@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collection Map</title>
+    <script>
+        // map
+
+        // 1. 정의
+        // 1) 생성과 동시에 초기화
+        let myMap = new Map([['a', 111], ['b', 222], ['c', 333]]);
+
+        console.log(`test1 : size = ${myMap.size}, a = ${myMap.get('a')}`);
+
+        // 수정
+        myMap.set('a', 'aaa');
+        console.log(`test2 : size = ${myMap.size}, a = ${myMap.get('a')}`);
+
+        // 추가
+        myMap.set('d', 'ddd');
+        console.log(`test3 : size = ${myMap.size}, d = ${myMap.get('d')}`);
+
+        // 삭제 (delete)
+        myMap.delete('b');
+        console.log(`test4 : size = ${myMap.size}, b = ${myMap.get('b')}`);
+        // 삭제되어 없는 내용을 출력했기 때문에 undefined 출력
+
+        // 일괄삭제 (clear)
+        myMap.clear();
+        console.log(`test6 : size = ${myMap.size}`);
+
+        // 존재 확인 (has) (true / false 출력)
+        console.log(`test5 : a = ${myMap.has('a')}, k = ${myMap.has('k')}`);
+
+        console.log('');
+
+        // 2) 생성 후 초기화
+        let sMap = new Map();
+
+        sMap.set('1', '안진혁');
+        sMap.set('2', '김해림');
+        sMap.set('3', '양세현');
+        sMap.set('4', '이성룡');
+
+        // 2. for ~ of 활용
+        // 출력 1
+        for (const [key, value] of sMap) {
+            console.log(`for 1 : key = ${key}, name = ${value}`);
+        }
+
+        console.log('');
+
+        // 출력 2
+        for (const ss of sMap) {
+            console.log(`for 2 : ss = ${ss}`);
+            console.log(`for 3 : ${ss[0]}번 ${ss[1]}`);
+        }
+
+        console.log('');
+
+        // 순회 매서드 : keys, values, entries (맵의 기본 이터레이터)
+        for (let ss of sMap.keys()) {
+            console.log(`for 4 : ss = ${ss}`);
+        }
+
+        console.log('');
+
+        for (let ss of sMap.values()) {
+            console.log(`for 5 : ss = ${ss}`);
+        }
+
+        console.log('');
+
+        for (let ss of sMap.entries()) {
+            console.log(`for 6 : ss = ${ss}`);
+        }
+
+        console.log('');
+
+        // 3. 활용 1 : key 가 객체인 경우
+        const u1 = { id: 'banana1', name: '홍길동1' };
+        const u2 = { id: 'banana2', name: '홍길동2' };
+        const u3 = { id: 'banana3', name: '홍길동3' };
+        const u4 = { id: 'banana4', name: '홍길동4' };
+
+        // map 생성
+        const uMap = new Map();
+
+        // 초기화
+        uMap.set(u1, 'Gold');
+        uMap.set(u2, 'Silver');
+        uMap.set(u3, 'Diamond');
+        uMap.set(u4, 'Bronze');
+
+        // for ~ of 이용해서
+        // 1) id, name 출력하기
+        for (let u of uMap.keys()) {
+            console.log(`id = ${u.id}, name = ${u.name}`);
+        }
+
+        console.log('');
+
+        // 2) id, 등급(value) 출력하기
+        for (let i of uMap.entries()) {
+            console.log(`id = ${i[0].id}, value = ${i[1]}`);
+        }
+
+        console.log('');
+
+        // 4. 활용 2 : value 가 객체인 경우
+        // student 프로토타입 작성 (속성 : nickname, name)
+        function student(nickname, name) {
+            this.nickname = nickname,
+                this.name = name;
+        }
+
+        // 인스턴스를 4개 만들고 map 에 담기 (key : 1~4, value : student)
+        const student1 = new student('a', '안진혁');
+        const student2 = new student('b', '양세현');
+        const student3 = new student('c', '김해림');
+        const student4 = new student('d', '이성룡');
+
+        const studentMap = new Map();
+
+        studentMap.set('1', student1);
+        studentMap.set('2', student2);
+        studentMap.set('3', student3);
+        studentMap.set('4', student4);
+
+        // 출력
+        for (const [key, value] of studentMap) {
+            console.log(`${key} : ${value.nickname}, ${value.name}`);
+        }
+
+        console.log('or');
+
+        for (let i of studentMap.entries()) {
+            console.log(`${i[0]} : ${i[1].nickname}, ${i[1].name}`);
+        }
+    </script>
+</head>
+
+<body>
+    <pre>
+        <h2>** 컬렉션(Collections) 장점 **</h2> 
+        => Object, Array를 사용하는 것 보다 최적화된 구현체를 제공
+        => ES6 : Map, Set, WeakMap, WeakSet
+        
+        ** Map **
+        => 특징
+          - Key - Value 의 쌍으로 이루어진 컬렉션
+          - key 를 사용해서 value 를 get, set 할 수 있음
+          - key 들은 중복될 수 없음 : 하나의 key 에는 하나의 value 만 허용
+          - key 로 사용가능한 데이터 Type 
+            : string, symbol(ES6), object, function 등
+            : number 는 사용불가능
+        => 객체와 비교
+          - 객체는 속성 추가시 내장 속성과 이름 중복으로 충돌이 일어날 수 있음.
+          - 객체는 이터러블 규약을 따르지 않으나 맵은 따름 ( for ~ of 가능 )    
+          - 속성의 Key는 항상 문자열 이어야 함. (ES6 에서는 심볼도 가능함)
+          - 객체의 속성의 수를 알수 없음.(size나 length 같은 메서드가 없음)
+      </pre>
+</body>
+
+</html>
