@@ -80,18 +80,30 @@
         // 3. set 매서드 체이닝 
         // 처리 후 set type 을 return 하는 매서드는 계속 . 으로 연결해서 사용 가능 / 마찬가지로 중복은 출력되지 않음
         mySet.add('홍길동').add('김길동').add('이길동').add('홍길동');
+
         for (name of mySet) {
             console.log(name);
         }
+
         console.log('');
 
         // 단, delete, has 매서드는 boolean 을 return 하기 때문에 중간에 사용 불가능 (마지막에 한번만 가능)
         mySet.add('홍길동').add('김길동').add('이길동').delete('이길동');
+
         for (name of mySet) {
             console.log(name);
         }
 
+        console.log('');
+
         // 4. forEach (함수)
+        // ** forEach(CallBack함수) : 요소를 순회
+        // => 이때 매개변수로 사용되는 CallBack함수 는 3개의 인수를 전달받음
+        //    (현재 요소값, 현재 요소값, 현재 순회중인 set객체 자체)
+        // => 배열의 forEach 메서드 Array.prototype.forEach 의 CallBack함수 인수 3개는
+        //    (현재 요소값, 현재 인덱스, 현재 순회중인 배열객체 자체)
+        // => Map의 forEach 메서드 Map.prototype.forEach 의 CallBack함수 인수 3개는
+        //    (현재 value, 현재 key, 현재 순회중인 map객체 자체 )
         mySet.forEach(function (v1, v2) {
             console.log(`forEach (함수) : ${v1}, ${v2}`);
         });
