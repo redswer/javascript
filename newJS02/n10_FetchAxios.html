@@ -5,10 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>** Fetch 와 Axios **</title>
+    <!-- axios 를 적용하기 위한 cdn -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         'use strict';
-        
+
         let url = '../javascript_window/snowVillage.html';
         // 1) Fetch
         // response 를 2 번에 나누어 받음
@@ -57,11 +58,13 @@
                 method: 'Get'
 
             }).then((response) => {
+                // axios 는 json 방식으로 받아오기 때문에 data 로 변경하여 출력
                 document.getElementById('resultArea').innerHTML = response.data;
 
             }).catch((error) => {
                 document.getElementById('resultArea').innerHTML =
-                    `error.response : ${error.response}<br>error.response.status : ${error.response.status}<br>
+                    `error.response.data : ${error.response.data}<br>
+                    error.response.status : ${error.response.status}<br><br>
                 error.response.headers : ${error.response.headers}`;
             });
         }
