@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>** Ajax 와 promise **</title>
+    <script>
+        'use strict';
+        // test 1
+        let ajaxP = new Promise((resolve, reject) => {
+            // 1-1) ajax 요청
+            let xhrObj = new XMLHttpRequest();
+
+            xhrObj.open('get', 'n09_01_AjaxForm.html');
+            // 'true' 는 생략가능
+            // = xhrObj.open('Get', 'n09_1_AjaxForm', 'true');
+
+            // 1-2) response 처리
+            xhrObj.onload = () => {
+                // 정상 실행인지, 거절(실패/오류)인지 확인
+                if (xhrObj.status == 200) {
+                    resolve(xhrObj.response);
+
+                } else {
+                    reject(xhrObj.status);
+                }
+            }
+
+            // 1-3) 요청 실행
+            xhrObj.send(null);
+
+        }).then((response) => {
+            alert(`ajax test 성공`);
+            document.getElementById('resultArea').innerHTML = '서버 response' + response;
+
+        }).catch((error) => {
+            alert(`ajax test 실패`);
+            document.getElementById('resultArea').innerHTML = `ajax test 실패 <br> status : ${error}`
+        });
+    </script>
+</head>
+
+<body>
+    <h2>Ajax 와 promise</h2>
+    <hr>
+    <div id="resultArea"></div>
+</body>
+
+</html>

@@ -102,3 +102,23 @@ function resultF() {
         }
     }
 }
+
+// jQuery 구문과 비교
+
+/* $.ajax({
+//     type: 'Get',  // Get/Post
+//     url: 'ax03_parameterResult.jsp',
+//     data: {
+//         id: document.getElementById('id').value,
+//         password: $('#password').val(),
+//         name: $('#name').val()
+//     },
+//     success: function (result) {
+//         alert('** Ajax jQuery Test 성공 **');
+//         $('#resultArea').html('** 서버의 Response_JQuery => <br>' + result);
+//     },
+//     error: function () {
+//         alert('** Ajax jQuery Test 실패 **');
+//         $('#resultArea').html('** 서버의 Response_JQuery => Error !!!<br>');
+//     }
+// }); */
