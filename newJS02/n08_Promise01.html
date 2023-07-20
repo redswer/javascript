@@ -17,13 +17,24 @@
         // JS 는 기본적으로 비동기적으로 실행중이기 때문에 0 출력
         console.log(`Test 1 : 예전방식 count 1 = ${count1}`);
 
+        // 연습 
+        // 1초 후에 1~100까지의 누적값을 출력
+        setTimeout(() => {
+            let sum = 0
+            for (let i = 1; i < 101; i++) {
+                sum += i;
+            }
+            console.log(sum);
+        }, 1000);
+
 
         // Test 2) Promise 적용
 
         /* promise 객체 생성 : Pending(대기) 상태
         - promise 객체를 생성하면 내부에서 executor 함수를 참조하여 매개변수인 resolve, reject 를 전달받음 */
 
-        // callbck 함수 내에 실행코드 작성
+        // callbck 함수 내에 실행코드 작성 / 이 callback 함수의 매개변수 resolve, reject 들도 callback 함수임
+
         let count2 = 0,
             promise = new Promise(function (resolve, reject) {
 
