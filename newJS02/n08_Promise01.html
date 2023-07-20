@@ -17,15 +17,50 @@
         // JS 는 기본적으로 비동기적으로 실행중이기 때문에 0 출력
         console.log(`Test 1 : 예전방식 count 1 = ${count1}`);
 
-        // 연습 
+        // 연습 1
         // 1초 후에 1~100까지의 누적값을 출력
+        let sum = 0
+
         setTimeout(() => {
-            let sum = 0
             for (let i = 1; i < 101; i++) {
                 sum += i;
+
             }
-            console.log(sum);
+            console.log(`연습 1 : 1 ~ 100의 합 = ${sum}`);
+
         }, 1000);
+
+        // 연습 2
+        // 위의 for 구문을 동기식으로 구현
+        // 이행 성공시 1~100의 합 출력하고 이후에 평균 출력하기
+        let sum2 = 0
+
+        let promise2 = new Promise(function (resolve, reject) {
+            setTimeout(() => {
+                for (let i = 1; i < 101; i++) {
+                    sum2 += i;
+                }
+
+                if (sum2 >= 100) {
+                    resolve(sum2);
+
+                } else {
+                    reject('합계 계산 실패');
+
+                }
+            }, 1000);
+        }).then((result) => {
+            console.log(`연습 2 : 1~100의 합 = ${result}`);
+            return result;
+            /* 여러 then이 하나의 식으로 연결되어 있으면 첫 번째 then 의 result 값은 setTimeout의 resolve 값이고,
+            이후 then의 result 값은 setTimeout이 아니라 이전 then의 result 값이 되어야 함.
+            따라서 return으로 result값을 반환해야 두 번째 then의 result 값이 정상 출력됨 */
+
+        }).then((result) => {
+            console.log(`연습 2 : 1~100의 합 = ${result / 100}`);
+        })
+        // promise2.then((result) => { console.log(`연습 2 : 1~100의 합 = ${result}`); });
+        // promise2.then((result) => { console.log(`연습 2 : 평균 = ${result / 100}`); });
 
 
         // Test 2) Promise 적용
