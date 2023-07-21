@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>** new.target 과 instanceof, function_ 객체의 상속 **</title>
+    <script>
+        // 1. new.target
+        // 1.1) 생성자 함수로 객체를 정의
+        function Circle(radius) {
+            this.radius = radius;
+
+            this.getDiameter = () => {
+                return this.radius * 2;
+            }
+        }
+        let c1 = new Circle(5);
+        console.log(`Test 1-1, new 사용 , Diameter : ${c1.getDiameter()}`);
+
+        // new 없이 사용
+        // 객체가 아닌, 일반함수로써 호출되었기 때문에 인스턴스를 생성하지 못함 : error
+        // let c1_2 = Circle(5);
+        // console.log(`Test 1-2, new 없이 사용, Diameter : ${c1_2.getDiameter()}`);
+
+
+        // 1.2) new 없이 호출해도 생성 가능한 객체 정의
+        // new 연산자를 사용하지 않은 경우에는 생성자 함수 내부에서 생성
+        function Circle2(radius) {
+
+            // new.target 속성을 확인하고 udefined 인 경우에는 내부에서 생성
+            if (!new.target) {
+                return new Circle2(radius);
+            }
+
+            this.radius = radius;
+
+            this.getDiameter = () => {
+                return this.radius * 2;
+            }
+        }
+        // new 연산자 없이 생성자 함수를 호출하여도 new.target을 통해 생성자 함수로서 호출됨
+        let c2 = Circle2(7);
+        console.log(`Test 1-2, new 없이 사용, Diameter : ${c2.getDiameter()}`);
+        console.log('');
+
+
+        // 2. instanceof
+        // 객체의 타입을 확인하기 위해 사용되는 연산자
+        function Circle3(radius) {
+            // 인스턴스를 확인해서 다르면 생성 후 return
+            if (!(this instanceof Circle3)) {
+                return new Circle3(radius);
+            }
+
+            this.radius = radius;
+
+            this.getDiameter = () => {
+                return this.radius * 2;
+            }
+        }
+        // new 연산자 없이 생성자 함수를 호출하여도 instanceof를 통해 생성자 함수로서 호출됨
+        let c3 = Circle3(9);
+        console.log(`Test 2, new 없이 사용, Diameter : ${c3.getDiameter()}`);
+        console.log('');
+
+
+        // 3. function_ 객체의 상속
+        // 3.1) 상속이 없는 경우 (circle3 은 위에서 설정한대로 new 연산자 없이 생성함)
+        let e1 = Circle3(11),
+            e2 = Circle3(22),
+            e3 = Circle3(33);
+
+        console.log(`Test 3-1 , 상속이 없는 경우 : e1.Diameter = ${e1.getDiameter()}`);
+        console.log(`Test 3-1 , 상속이 없는 경우 : e2.Diameter = ${e2.getDiameter()}`);
+        console.log(`Test 3-1 , 상속이 없는 경우 : e3.Diameter = ${e3.getDiameter()}`);
+
+        // 3-2)
+        // function Circle4(radius) {
+        //     this.radius = radius;
+        //     this.getArea = function () {
+        //         return Math.PI * this.radius ** 2;
+        //     }
+        // }
+
+        // 상속관계 구현 : 위의 원래 코드의 this.getArea 를 조상으로 정의
+        // 객체의 조상 : prototype 속성
+        function Circle5(radius) {
+            this.radius = radius;
+        }
+
+        // 객체의 prototype 속성을 활용하여 상속의 관계를 구현
+        Circle5.prototype.getArea = function () {
+            return Math.PI * this.radius ** 2;
+        }
+
+        // Circle5는 new 연산자 없이 사용할 수 있도록 설정하지 않았으므로 Circle5 호출 시 new 연산자가 필요함
+        let ee1 = new Circle5(11),
+            ee2 = new Circle5(22),
+            ee3 = new Circle5(33);
+
+        console.log(`Test 3-2 , 상속이 있는 경우 : ee1.Area = ${ee1.getArea()}`);
+        console.log(`Test 3-2 , 상속이 있는 경우 : ee2.Area = ${ee2.getArea()}`);
+        console.log(`Test 3-2 , 상속이 있는 경우 : ee3.Area = ${ee3.getArea()}`);
+    </script>
+</head>
+
+<body>
+    <h2>** new.target 과 instanceof, function_ 객체의 상속 **</h2>
+</body>
+
+</html>
