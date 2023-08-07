@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>** 지연 함수(Set Interval) Test **</title>
+</head>
+
+<body>
+    <h2>지연 함수(Set Interval) Test</h2>
+    => 텍스트가 자동 회전하며, 마우스로 클릭하면 중단
+    <br>
+    <hr>
+
+    <div>
+        <h2 id="span" style="background-color: yellow;">자동 회전 Text</h2>
+    </div>
+    <script>
+        let span = document.getElementById('span');
+
+        // 200/1000 초 (200 밀리초) 주기로 실행
+        let timerID = setInterval("doRotate()", 100);
+
+        // 마우스로 클릭하면 중단
+        span.onclick = () => { clearInterval(timerID); }
+
+
+        // 10회전 하면 자동으로 멈추기 + 1회전 할때마다 count 값 1 씩 증가하고 10회전 이면 stop
+        // => 회전수는 콜백함수 doRotate() 에서 확인 가능 따라서 doRotate() 에 작성해야 함
+        let allCount = 0;
+
+        function doRotate() {
+            let str = span.innerHTML;
+            let firstChar = str.substr(0, 1);
+            let remains = str.substr(1, str.length - 1);
+            str = remains + firstChar;
+            span.innerHTML = str;
+
+            allCount++;
+            let count = 0;
+            if (allCount <= str.length * 10) {
+                if (allCount % 10 == 0) {
+                    count = count + allCount / 10;
+                    console.log('** count: ' + count);
+                }
+            } else {
+                clearInterval(timerID);
+            }
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
